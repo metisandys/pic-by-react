@@ -18,14 +18,37 @@ imageDatas = (function getImageURL(imageDatasArr){
 	return imageDatasArr;
 })(imageDatas);
 
+var ImgFigure = React.createClass({
+	render: function(){
+		return (
+			<figure className="img-figure">
+				<img src={this.props.data.imageURL}
+					 alt={this.props.data.title}/>
+				<figcaption>
+					<h2 className="img-title">{this.props.data.title}</h2>
+				</figcaption>
+			</figure>
+			);
+	}
+});
+
 var PicByReactApp = React.createClass({
 	render: function(){
+
+		var controllerUnits = [],
+			ImgFigures = [];
+
+		imageDatas.forEach(function(value,index){
+			ImgFigures.push(<ImgFigure data={value} key={index}/>)
+		});
+
 		return (
 			<section className="stage">
 				<section className="img-sec">
-
+					{ImgFigures}
 				</section>
 				<nav className="controller-nav">
+					{controllerUnits}
 				</nav>
 			</section>
 			);
